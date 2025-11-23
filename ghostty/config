@@ -1,0 +1,11 @@
+theme = catppuccin-mocha.conf
+font-size = 19
+font-family = FiraCode Nerd Font Mono
+mouse-hide-while-typing = true
+window-decoration = true
+macos-option-as-alt = true
+#command = /usr/local/bin/zellij
+
+window-padding-x=12
+window-padding-y=12
+window-padding-balance=true
