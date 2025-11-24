@@ -6,12 +6,14 @@ palette = "catppuccin_mocha"
 right_format = """$all"""
 command_timeout = 1000
 
-[character]
-vicmd_symbol = "[N] >>>"
-success_symbol = '[➜](bold green)'
+[directory]
+truncation_length = 2
+truncate_to_repo = true
+fish_style_pwd_dir_length = 2
 
-[directory.substitutions]
-'~/tests/starship-custom' = 'work-project'
+[character]
+# vicmd_symbol = "[N] >>>"
+success_symbol = '[➜](bold green)'
 
 [git_branch]
 format =  '[$symbol$branch(:$remote_branch)]($style)'
