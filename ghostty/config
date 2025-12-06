@@ -1,11 +1,24 @@
+#theme = nightowl
 theme = catppuccin-mocha.conf
 font-size = 19
 font-family = FiraCode Nerd Font Mono
+
+minimum-contrast = 1
+
 mouse-hide-while-typing = true
 window-decoration = true
+window-theme = ghostty
+
 macos-option-as-alt = true
+macos-titlebar-style = tabs
+macos-icon = xray
+
 command = /opt/homebrew/bin/fish
 
 window-padding-x=12
 window-padding-y=12
 window-padding-balance=true
+
+# Cursor
+cursor-style = bar
+cursor-click-to-move = true

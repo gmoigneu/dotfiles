@@ -1,4 +1,4 @@
-fish_add_path "/opt/homebrew/bin/"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 if status is-interactive
 
@@ -15,6 +15,18 @@ if status is-interactive
     end
 
     alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+    
+    # Upsun
+    alias up="upsun push -y"
+
+
+    # node.js
+    function nvm
+        bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
+    end
+
+    set -x NVM_DIR ~/.nvm
+    nvm use default --silent
 
     if command -v zoxide &> /dev/null
         zoxide init fish | source
@@ -48,6 +60,9 @@ if status is-interactive
     set -gx PNPM_HOME "~/Library/pnpm"
     fish_add_path $PNPM_HOME
     # pnpm end
+
+    fish_add_path /Users/nls/.platformsh-stg/bin/
+    fish_add_path /Users/nls/google-cloud-sdk/bin/
 
     # The next line updates PATH for the Google Cloud SDK.
     if test -f '~/google-cloud-sdk/path.fish.inc'
