@@ -1,9 +1,26 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# OS detection and home directory
+set -gx USER_HOME $HOME
+set -gx OS_NAME (uname)
+
+# Homebrew setup based on OS
+if test "$OS_NAME" = "Darwin"
+    # macOS - try Apple Silicon first, then Intel
+    if test -f /opt/homebrew/bin/brew
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    else if test -f /usr/local/bin/brew
+        eval "$(/usr/local/bin/brew shellenv)"
+    end
+else if test "$OS_NAME" = "Linux"
+    # Linux - try Linuxbrew
+    if test -f /home/linuxbrew/.linuxbrew/bin/brew
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    end
+end
 
 if status is-interactive
 
     # Commands to run in interactive sessions can go here
-    set -gx STARSHIP_CONFIG ~/.config/starship.toml
+    set -gx STARSHIP_CONFIG "$USER_HOME/.config/starship.toml"
     starship init fish | source
 
     # File system
@@ -25,7 +42,7 @@ if status is-interactive
         bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
     end
 
-    set -x NVM_DIR ~/.nvm
+    set -x NVM_DIR "$USER_HOME/.nvm"
     nvm use default --silent
 
     if command -v zoxide &> /dev/null
@@ -57,27 +74,32 @@ if status is-interactive
     alias ud='git push upsun && upsun deploy'
 
     # pnpm
-    set -gx PNPM_HOME "~/Library/pnpm"
+    if test "$OS_NAME" = "Darwin"
+        set -gx PNPM_HOME "$USER_HOME/Library/pnpm"
+    else
+        set -gx PNPM_HOME "$USER_HOME/.local/share/pnpm"
+    end
     fish_add_path $PNPM_HOME
     # pnpm end
 
-    fish_add_path /Users/nls/.platformsh-stg/bin/
-    fish_add_path /Users/nls/google-cloud-sdk/bin/
+    fish_add_path $USER_HOME/.platformsh-stg/bin/
+    fish_add_path $USER_HOME/google-cloud-sdk/bin/
+    fish_add_path $USER_HOME/.cargo/bin
 
     # The next line updates PATH for the Google Cloud SDK.
-    if test -f '~/google-cloud-sdk/path.fish.inc'
-        source '~/google-cloud-sdk/path.fish.inc'
+    if test -f "$USER_HOME/google-cloud-sdk/path.fish.inc"
+        source "$USER_HOME/google-cloud-sdk/path.fish.inc"
     end
 
     # The next line enables shell command completion for gcloud.
-    if test -f '~/google-cloud-sdk/completion.fish.inc'
-        source '~/google-cloud-sdk/completion.fish.inc'
+    if test -f "$USER_HOME/google-cloud-sdk/completion.fish.inc"
+        source "$USER_HOME/google-cloud-sdk/completion.fish.inc"
     end
 
-    fish_add_path ~/.local/bin
-
-    # Added by Antigravity
-    fish_add_path ~/.antigravity/antigravity/bin
+    fish_add_path "$USER_HOME/.local/bin"
+    
+    # go
+    fish_add_path /usr/local/go/bin
 
     fzf --fish | source
 end

@@ -37,4 +37,4 @@ SETUVAR fish_pager_color_selected_background:\x2dr
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/Users/nls/\x2eplatformsh\x2dstg/bin\x1e/Users/nls/google\x2dcloud\x2dsdk/bin\x1e/opt/homebrew/bin\x1e/Users/nls/\x2eantigravity/antigravity/bin\x1e/Users/nls/\x2elocal/bin\x1e/Users/nls/Library/pnpm
+SETUVAR fish_user_paths:/home/nls/Library/pnpm\x1e/usr/local/go/bin\x1e/home/nls/google\x2dcloud\x2dsdk/bin\x1e/home/nls/\x2elocal/bin\x1e/home/nls/\x2ecargo/bin\x1e/Users/nls/\x2eplatformsh\x2dstg/bin\x1e/Users/nls/google\x2dcloud\x2dsdk/bin\x1e/opt/homebrew/bin\x1e/Users/nls/\x2eantigravity/antigravity/bin\x1e/Users/nls/\x2elocal/bin\x1e/Users/nls/Library/pnpm
