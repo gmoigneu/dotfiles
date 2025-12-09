@@ -1,7 +1,9 @@
 #theme = nightowl
 theme = catppuccin-mocha.conf
 font-size = 19
-font-family = FiraCode Nerd Font Mono
+# https://github.com/Trzcin/Fira-Code-Nerd
+font-family = Fira Code
+font-weigth = 500
 
 minimum-contrast = 1
 
