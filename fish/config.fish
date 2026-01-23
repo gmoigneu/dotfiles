@@ -36,6 +36,8 @@ if status is-interactive
     # Upsun
     alias up="upsun push -y"
 
+    alias aigw='eval "$(ai-gateway env)" && set OPENCODE_CONFIG_CONTENT (echo $OPENCODE_CONFIG_CONTENT | jq "del(.enabled_providers)")'
+    aigw
 
     # node.js
     function nvm
@@ -102,5 +104,17 @@ if status is-interactive
     fish_add_path /usr/local/go/bin
 
     fzf --fish | source
+
+    source "$USER_HOME/secrets"
 end
 
+
+# opencode
+fish_add_path /home/nls/.opencode/bin
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+
+# AI Gateway
+#eval "$(ai-gateway env)"
